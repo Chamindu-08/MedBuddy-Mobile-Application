@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
-class LoginScreenTopImage extends StatelessWidget {
-  const LoginScreenTopImage({
+class SignUpScreenTopImage extends StatelessWidget {
+  const SignUpScreenTopImage({
     super.key,
   });
 
@@ -21,14 +21,14 @@ class LoginScreenTopImage extends StatelessWidget {
           ],
         ),
         const Text(
-          "Welcome back,",
+          "Welcome to MedBuddy,",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 30,),
         ),
         const SizedBox(height: defaultPadding / 2),
         const Text(
-          "Sign in with your email and password  \nor continue with social media",
+          "Sign up with your email and password  \nor continue with social media",
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: defaultPadding * 2),

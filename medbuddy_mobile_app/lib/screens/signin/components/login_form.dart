@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medbuddy_mobile_app/components/already_have_an_account.dart';
+import 'package:medbuddy_mobile_app/screens/signup/signup_screen.dart';
 import '../../../constants.dart';
 
 class LoginForm extends StatelessWidget {
