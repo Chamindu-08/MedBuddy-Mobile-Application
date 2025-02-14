@@ -1,12 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:medbuddy_mobile_app/components/already_have_an_account.dart';
-import 'package:medbuddy_mobile_app/screens/signup/signup_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
+import 'package:medbuddy_mobile_application/components/already_have_an_account.dart';
+import 'package:medbuddy_mobile_application/screens/dashboard/dashboard_screen.dart';
+import 'package:medbuddy_mobile_application/screens/signup/signup_screen.dart';
 import '../../../constants.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({
-    super.key,
-  });
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isLoading = false;
+
+  // Handle Sign In
+  Future<void> _signIn() async {
+    setState(() {
+      isLoading = true;
+    });
+    
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      
+      User? user = userCredential.user;
+      if (user != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Successfully signed in")),
+        );
+        Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const DashboardScreen()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      String message = "An error occurred";
+      if (e.code == 'user-not-found') {
+        message = "No user found for that email.";
+      } else if (e.code == 'wrong-password') {
+        message = "Wrong password provided.";
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +63,10 @@ class LoginForm extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
+            controller: emailController,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
-            onSaved: (email) {},
             decoration: const InputDecoration(
               hintText: "Your email",
               prefixIcon: Padding(
@@ -29,6 +78,7 @@ class LoginForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
+              controller: passwordController,
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
@@ -42,12 +92,14 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: defaultPadding),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              "Sign in".toUpperCase(),
-            ),
-          ),
+          isLoading
+              ? const CircularProgressIndicator()
+              : ElevatedButton(
+                  onPressed: _signIn, // Call the signIn function when button is pressed
+                  child: Text(
+                    "Sign in".toUpperCase(),
+                  ),
+                ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
             press: () {

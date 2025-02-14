@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medbuddy_mobile_app/screens/welcome/components/get_start_button.dart';
+import 'package:medbuddy_mobile_application/screens/welcome/components/get_start_button.dart';
 import '../../components/background.dart';
 import '../../responsive.dart';
 import 'components/welcome_image.dart';

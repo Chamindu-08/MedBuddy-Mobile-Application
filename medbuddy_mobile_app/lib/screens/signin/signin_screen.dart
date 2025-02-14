@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medbuddy_mobile_app/responsive.dart';
+import 'package:medbuddy_mobile_application/responsive.dart';
 
 import '../../components/background.dart';
 import 'components/login_form.dart';

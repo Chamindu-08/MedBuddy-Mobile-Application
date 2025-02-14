@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medbuddy_mobile_app/screens/signin/signin_screen.dart';
+import 'package:medbuddy_mobile_application/screens/signin/signin_screen.dart';
 
 class LoginAndSignupBtn extends StatelessWidget {
   const LoginAndSignupBtn({

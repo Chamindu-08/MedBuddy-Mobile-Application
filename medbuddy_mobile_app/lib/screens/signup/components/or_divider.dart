@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medbuddy_mobile_app/constants.dart';
+import 'package:medbuddy_mobile_application/constants.dart';
 
 class OrDivider extends StatelessWidget {
   const OrDivider({super.key});

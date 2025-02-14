@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:medbuddy_mobile_app/constants.dart';
-import 'package:medbuddy_mobile_app/responsive.dart';
-import 'package:medbuddy_mobile_app/screens/signup/components/signup_top_image.dart';
-import 'package:medbuddy_mobile_app/screens/signup/components/socal_signup.dart';
+import 'package:medbuddy_mobile_application/constants.dart';
+import 'package:medbuddy_mobile_application/responsive.dart';
+import 'package:medbuddy_mobile_application/screens/signup/components/signup_top_image.dart';
+import 'package:medbuddy_mobile_application/screens/signup/components/socal_signup.dart';
 import '../../components/background.dart';
 import 'components/signup_form.dart';
 

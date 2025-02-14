@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medbuddy_mobile_app/constants.dart';
+import 'package:medbuddy_mobile_application/constants.dart';
+
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   final bool login;
